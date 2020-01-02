@@ -10,6 +10,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import pages.HeadPage;
 import pages.NavigationMenuElement;
+import pages.SignInPopUpElement;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,6 +19,7 @@ public class ParentTest {
     protected WebDriver driver;
     protected HeadPage headPage;
     protected NavigationMenuElement navigationMenuElement;
+    protected SignInPopUpElement signInPopUpElement;
 
     @Before
     public void setUp() throws Exception {
@@ -33,6 +35,7 @@ public class ParentTest {
 
         navigationMenuElement = new NavigationMenuElement(driver, "");
         headPage = new HeadPage(driver, "");
+        signInPopUpElement = new SignInPopUpElement(driver, "");
     }
 
     private WebDriver driverInit() throws Exception {
