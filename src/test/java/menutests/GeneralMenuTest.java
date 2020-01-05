@@ -10,15 +10,24 @@ public class GeneralMenuTest extends ParentTest {
     public void clickMenuTest() {
         headPage.openHeadPage();
         Utils.waitABit(3000);
-        navigationMenuElement.clickOnFilms();
-        Utils.waitABit(3000);
-        navigationMenuElement.clickOnVideo();
-        Utils.waitABit(3000);
-        navigationMenuElement.clickOnSeries();
-        Utils.waitABit(3000);
-        navigationMenuElement.clickOnNewsBlog();
-        Utils.waitABit(4000);
-        headPage.clickLogInOutButton();
-        Utils.waitABit(6000);
+        upperMenuElement.clickOnMyAccount();
+        Utils.waitABit(1000);
+        upperMenuElement.clickOnContactUS();
+        Utils.waitABit(2000);
+        upperMenuElement.clickOnWishlist();
+        Utils.waitABit(2000);
+        upperMenuElement.clickOnShoppingCart();
+        Utils.waitABit(2000);
+        upperMenuElement.clickOnCurrencySelector();
+        Utils.waitABit(2000);
+        upperMenuElement.clickUpperMenuByPosition(0);
+        Utils.waitABit(2000);
+        upperMenuElement.clickUpperMenuByPosition(1);
+        Utils.waitABit(2000);
+        upperMenuElement.clickUpperMenuByPosition(2);
+        Utils.waitABit(2000);
+        upperMenuElement.clickUpperMenuByPosition(3);
+        Utils.waitABit(2000);
+
     }
 }

@@ -10,4 +10,9 @@ public interface ConfigProperties extends Config {
 	String base_url();
 	String DATA_FILE();
 	String DATA_FILE_PATH();
+
+	String USER_LOGIN();
+	String USER_PASSWORD();
+	String WRONG_USER_LOGIN();
+	String WRONG_USER_PASSWORD();
 }

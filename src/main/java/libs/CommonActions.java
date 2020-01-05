@@ -3,6 +3,7 @@ package libs;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -53,12 +54,30 @@ public class CommonActions {
 
     public void enterText(WebElement element, String text) {
         try {
+            element.click();
             element.clear();
             element.sendKeys(text);
             log.info(text + " was input into text field");
         } catch (Exception e) {
             failTest();
         }
+    }
+
+    public void scrollToTheElement(WebElement element) {
+        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
+        try {
+            log.info("Scrolling to desired element.");
+            javascriptExecutor.executeScript("arguments[0].scrollIntoView();", element);
+        } catch (Exception e) {
+            log.info("Cannot find element to scroll to!");
+            failTest();
+        }
+    }
+
+    public void scrollToThePageBottom() {
+        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
+        log.info("Scrolling to the bottom of webpage.");
+        javascriptExecutor.executeScript("window.scrollTo(0, document.body.scrollHeight)");
     }
 
     private void failTest() {

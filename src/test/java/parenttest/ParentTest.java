@@ -9,8 +9,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import pages.HeadPage;
-import pages.NavigationMenuElement;
-import pages.SignInPopUpElement;
+import pages.LoginPage;
+import pages.UpperMenuElement;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,8 +18,8 @@ public class ParentTest {
 
     protected WebDriver driver;
     protected HeadPage headPage;
-    protected NavigationMenuElement navigationMenuElement;
-    protected SignInPopUpElement signInPopUpElement;
+    protected UpperMenuElement upperMenuElement;
+    protected LoginPage loginPage;
 
     @Before
     public void setUp() throws Exception {
@@ -33,9 +33,9 @@ public class ParentTest {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
-        navigationMenuElement = new NavigationMenuElement(driver, "");
+        upperMenuElement = new UpperMenuElement(driver, "");
         headPage = new HeadPage(driver, "");
-        signInPopUpElement = new SignInPopUpElement(driver, "");
+        loginPage = new LoginPage(driver, "");
     }
 
     private WebDriver driverInit() throws Exception {
