@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import parentpage.ParentPage;
 
+import java.util.List;
+
 public class LoginPage extends ParentPage {
 
     @FindBy(id = "input-email")
@@ -18,6 +20,9 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//div[@class='alert alert-danger alert-dismissible']")
     private WebElement loginFailWarning;
+
+    @FindBy(xpath = ".//h2")
+    private List<WebElement> mediumTitles;
 
     public LoginPage(WebDriver driver, String partialUrl) {
         super(driver, partialUrl);
@@ -41,5 +46,19 @@ public class LoginPage extends ParentPage {
 
     public void scrollToBottom() {
         commonActions.scrollToThePageBottom();
+    }
+
+    public void logIn(String userLogin, String userPassword) {
+        fillInUserLogin(userLogin);
+        fillInUserPassword(userPassword);
+        clickLoginButton();
+    }
+
+    public boolean isLoginPageTitleDisplayed(int title) {
+        return commonActions.isElementDisplayed(mediumTitles.get(title));
+    }
+
+    public boolean isLoginButtonDisplayed() {
+        return commonActions.isElementDisplayed(loginButton);
     }
 }

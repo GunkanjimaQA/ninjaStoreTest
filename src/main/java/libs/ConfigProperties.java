@@ -7,12 +7,18 @@ public interface ConfigProperties extends Config {
 	long TIME_FOR_EXPLICIT_WAIT_LOW();
 	long TIME_FOR_EXPLICIT_WAIT_HIGH();
 
+	//Base data
 	String base_url();
 	String DATA_FILE();
 	String DATA_FILE_PATH();
 
+	//Credentials
 	String USER_LOGIN();
 	String USER_PASSWORD();
 	String WRONG_USER_LOGIN();
 	String WRONG_USER_PASSWORD();
+
+	//Localized strings
+	String CART_PAGE_EMPTY_TITLE();
+	String CART_PAGE_GIFT_CERTIFICATE_TITLE();
 }

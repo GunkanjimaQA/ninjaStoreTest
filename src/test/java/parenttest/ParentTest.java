@@ -1,6 +1,7 @@
 package parenttest;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -8,18 +9,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import pages.HeadPage;
-import pages.LoginPage;
-import pages.UpperMenuElement;
+import pages.*;
 
 import java.util.concurrent.TimeUnit;
 
 public class ParentTest {
 
     protected WebDriver driver;
-    protected HeadPage headPage;
-    protected UpperMenuElement upperMenuElement;
+    protected Logger log;
+    protected MainPage mainPage;
+    protected HeaderElement headerElement;
     protected LoginPage loginPage;
+    protected CartPage cartPage;
+    protected FooterElement footerElement;
+    protected ContactPage contactPage;
 
     @Before
     public void setUp() throws Exception {
@@ -33,9 +36,14 @@ public class ParentTest {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
-        upperMenuElement = new UpperMenuElement(driver, "");
-        headPage = new HeadPage(driver, "");
+        log = Logger.getLogger(getClass());
+
+        headerElement = new HeaderElement(driver, "");
+        mainPage = new MainPage(driver, "");
         loginPage = new LoginPage(driver, "");
+        cartPage = new CartPage(driver, "");
+        footerElement = new FooterElement(driver, "");
+        contactPage = new ContactPage(driver, "");
     }
 
     private WebDriver driverInit() throws Exception {

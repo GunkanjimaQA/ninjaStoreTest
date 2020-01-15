@@ -9,6 +9,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class CommonActions {
 
     private WebDriver driver;
@@ -22,7 +25,7 @@ public class CommonActions {
 
     public boolean isElementDisplayed(WebElement element) {
         try {
-            boolean state = element.isDisplayed();
+            boolean state = driverWait_10.until(ExpectedConditions.visibilityOf(element)).isDisplayed();
             log.info("Element displayed: " + state);
             return state;
         } catch (Exception e) {
@@ -74,10 +77,21 @@ public class CommonActions {
         }
     }
 
+    public void scrollElementToTheCenter(WebElement element)  {
+        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
+        javascriptExecutor.executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+    }
+
     public void scrollToThePageBottom() {
         JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
         log.info("Scrolling to the bottom of webpage.");
         javascriptExecutor.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+    }
+
+    public List<String> getListOfTextsFromElements(List<WebElement> elements) {
+        return elements.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
     }
 
     private void failTest() {

@@ -1,0 +1,73 @@
+package pages;
+
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import parentpage.ParentPage;
+
+import java.util.List;
+
+public class MainPage extends ParentPage {
+
+    @FindBy(xpath = ".//div[@class='product-thumb transition']")
+    List<WebElement> featuredProducts;
+
+    @FindBy(xpath = ".//h4/a")
+    List<WebElement> featuredProductLinks;
+
+    @FindBy(xpath = ".//div[@class='button-group']")
+    List<WebElement> addFeaturedToCartButtons;
+
+    @FindBy(xpath = ".//div[@class='alert alert-success alert-dismissible']")
+    WebElement successfulAddToCartAlert;
+
+    @FindBy(xpath = ".//a[@href='http://tutorialsninja.com/demo/index.php?route=common/home']")
+    WebElement mainPageButton;
+
+    public MainPage(WebDriver driver, String partialUrl) {
+        super(driver, partialUrl);
+    }
+
+    public void openMainPage() {
+        try {
+            driver.get(configProperties.base_url());
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assert.fail("Browser has failed");
+        }
+    }
+
+    public void scrollToFeaturedProductsSection() {
+        commonActions.scrollToTheElement(featuredProducts.get(0));
+    }
+
+    public void getBackToMainPage() {
+        commonActions.clickOnElement(mainPageButton);
+    }
+
+    public void addFeaturedProductToCart(int itemPosition) {
+        addFeaturedToCartButtons.get(itemPosition).click();
+    }
+
+    public void scrollToFooter() {
+        commonActions.scrollToThePageBottom();
+    }
+
+    public String getFeaturedProductNameByPosition(int itemPosition) {
+        return featuredProductLinks.get(itemPosition).getText();
+    }
+
+    public boolean isFeaturedProductsSectionConsistent() {
+        return featuredProducts.size() == 4;
+    }
+
+    public boolean isSpecificFeaturedProductDisplayed(int itemPosition) {
+        return commonActions.isElementDisplayed(featuredProducts.get(itemPosition));
+    }
+
+    public boolean isSuccessfulProductAddAlertShown() {
+        return commonActions.isElementDisplayed(successfulAddToCartAlert);
+    }
+}

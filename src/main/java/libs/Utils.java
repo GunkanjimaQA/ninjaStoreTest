@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 public class Utils {
     private Logger log;
@@ -64,5 +65,19 @@ public class Utils {
         String dateFormatted = dateFormat.format(date);
         System.out.println(dateFormatted);
         return dateFormatted;
+    }
+
+    /**
+     * Method returns pseudo random number in given range (inclusive)
+     * @param minLimit minimal limit
+     * @param maxLimit maximal limit
+     * @return random int number in a range
+     */
+    public static int limitedRandomizer(int minLimit, int maxLimit) {
+        if (minLimit >= maxLimit) {
+            throw new IllegalArgumentException("C'mon, maximum must be greater than minimum :)");
+        }
+        Random random = new Random();
+        return random.nextInt((maxLimit - minLimit) + 1) + minLimit;
     }
 }

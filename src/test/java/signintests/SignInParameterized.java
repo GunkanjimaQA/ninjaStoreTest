@@ -1,4 +1,4 @@
-package signintest;
+package signintests;
 
 import libs.Utils;
 import org.junit.Test;
@@ -30,11 +30,11 @@ public class SignInParameterized extends ParentTest {
     }
 
     @Test
-    public void testLoginFailWithParameters() {
-        headPage.openHeadPage();
+    public void failedLoginTestWithParameters() {
+        mainPage.openMainPage();
         Utils.waitABit(3000);
-        upperMenuElement.clickOnMyAccount();
-        upperMenuElement.clickOnLogin();
+        headerElement.clickOnMyAccount();
+        headerElement.clickOnLogin();
         Utils.waitABit(1000);
         loginPage.fillInUserLogin(userLogin);
         loginPage.fillInUserPassword(userPassword);

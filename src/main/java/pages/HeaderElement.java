@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,7 +8,9 @@ import parentpage.ParentPage;
 
 import java.util.List;
 
-public class UpperMenuElement extends ParentPage {
+public class HeaderElement extends ParentPage {
+
+    //Upper menu
 
     @FindBy(id = "form-currency")
     private WebElement currencySelector;
@@ -34,9 +37,25 @@ public class UpperMenuElement extends ParentPage {
     @FindBy(xpath = ".//a[@href='http://tutorialsninja.com/demo/index.php?route=account/login']")
     private  WebElement upperMenuLogin;
 
-    public UpperMenuElement(WebDriver driver, String partialUrl) {
+    //Cart dropdown
+
+    //@FindBy(id = "cart-total")
+    //@FindBy(xpath = ".//div[@id='cart']")
+    //@FindBy(id = "cart")
+    @FindBy(xpath = ".//div/div/button[@data-toggle='dropdown']")
+    private WebElement cartDropdownButton;
+
+    @FindBy(xpath = ".//button[@title='Remove']")
+    private WebElement cartDropdownRemoveButton;
+
+    @FindBy(xpath = ".//button[@title='Remove']")
+    private List<WebElement> cartDropdownRemoveButtons;
+
+    public HeaderElement(WebDriver driver, String partialUrl) {
         super(driver, partialUrl);
     }
+
+    // Methods
 
     public void clickOnCurrencySelector() {
         commonActions.clickOnElement(currencySelector);
@@ -68,5 +87,28 @@ public class UpperMenuElement extends ParentPage {
 
     public void clickUpperMenuByPosition(int position) {
         commonActions.clickOnElement(upperMenuItems.get(position));
+    }
+
+    public void openCartDropdown() {
+        commonActions.clickOnElement(cartDropdownButton);
+        //JavascriptExecutor executor = (JavascriptExecutor) driver;
+        //executor.executeScript("arguments[0].click();", cartDropdownButton);
+    }
+
+    public void removeProductFromCartDropdown() {
+        cartDropdownRemoveButton.click();
+    }
+
+    public void removeProductFromCartDropdown(int position) {
+        if (position > cartDropdownRemoveButtons.size() + 1) {
+            log.error("No product with this position!");
+            return;
+        }
+        cartDropdownRemoveButtons.get(position).click();
+    }
+
+    public void goToLogin() {
+        clickOnMyAccount();
+        clickOnLogin();
     }
 }

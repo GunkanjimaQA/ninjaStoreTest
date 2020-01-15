@@ -8,26 +8,26 @@ public class GeneralMenuTest extends ParentTest {
 
     @Test
     public void clickMenuTest() {
-        headPage.openHeadPage();
+        mainPage.openMainPage();
         Utils.waitABit(3000);
-        upperMenuElement.clickOnMyAccount();
-        Utils.waitABit(1000);
-        upperMenuElement.clickOnContactUS();
+        headerElement.clickOnContactUS();
+        headerElement.clickOnMyAccount();
+        headerElement.clickOnWishlist();
+        checkExpectedResult("First login page title is not shown!", loginPage.isLoginPageTitleDisplayed(0));
+        checkExpectedResult("Second login page title is not shown!", loginPage.isLoginPageTitleDisplayed(1));
+        checkExpectedResult("Login button is not shown!", loginPage.isLoginButtonDisplayed());
+        headerElement.clickOnShoppingCart();
+        checkExpectedResult("Shopping cart page title is not shown!", cartPage.isEmptyShoppingCartTitleDisplayed());
         Utils.waitABit(2000);
-        upperMenuElement.clickOnWishlist();
+        headerElement.clickOnCurrencySelector();
         Utils.waitABit(2000);
-        upperMenuElement.clickOnShoppingCart();
+        headerElement.clickUpperMenuByPosition(0);
         Utils.waitABit(2000);
-        upperMenuElement.clickOnCurrencySelector();
+        headerElement.clickUpperMenuByPosition(1);
         Utils.waitABit(2000);
-        upperMenuElement.clickUpperMenuByPosition(0);
+        headerElement.clickUpperMenuByPosition(2);
         Utils.waitABit(2000);
-        upperMenuElement.clickUpperMenuByPosition(1);
+        headerElement.clickUpperMenuByPosition(3);
         Utils.waitABit(2000);
-        upperMenuElement.clickUpperMenuByPosition(2);
-        Utils.waitABit(2000);
-        upperMenuElement.clickUpperMenuByPosition(3);
-        Utils.waitABit(2000);
-
     }
 }
