@@ -19,6 +19,9 @@ public class ContactPage extends ParentPage {
     @FindBy(id = "input-enquiry")
     WebElement userInquiryInput;
 
+    @FindBy(xpath = ".//div[@class='text-danger']")
+    WebElement tooSmallEnquiryTextAlert;
+
     public ContactPage(WebDriver driver, String partialUrl) {
         super(driver, partialUrl);
     }
@@ -42,4 +45,13 @@ public class ContactPage extends ParentPage {
     public void submitUserEnquiry() {
         commonActions.clickOnElement(submitUserMessageButton);
     }
+
+    public boolean isUserNameInputDisplayed() {
+        return commonActions.isElementDisplayed(userNameInput);
+    }
+
+    public boolean isTooSmallEnquiryTextAlertDisplayed() {
+        return commonActions.isElementDisplayed(tooSmallEnquiryTextAlert);
+    }
+
 }

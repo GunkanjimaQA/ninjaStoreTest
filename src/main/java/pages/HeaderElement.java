@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import parentpage.ParentPage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HeaderElement extends ParentPage {
@@ -14,6 +15,9 @@ public class HeaderElement extends ParentPage {
 
     @FindBy(id = "form-currency")
     private WebElement currencySelector;
+
+    @FindBy(xpath = ".//button[@class='currency-select btn btn-link btn-block']")
+    private List<WebElement> currenciesButtons;
 
     @FindBy(xpath = ".//a[@href='http://tutorialsninja.com/demo/index.php?route=information/contact']")
     private WebElement contactUSButton;
@@ -106,6 +110,17 @@ public class HeaderElement extends ParentPage {
         }
         cartDropdownRemoveButtons.get(position).click();
     }
+
+    public List<String> getCurrenciesFromSelector() {
+        List<String> currenciesListRaw = commonActions.getListOfTextsFromElements(currenciesButtons);
+        List<String> currenciesListClean = new ArrayList<>();
+        for (String currency : currenciesListRaw) {
+            currenciesListClean.add(currency.replaceAll("[^a-zA-Z0-9\\\\]", ""));
+        }
+        return currenciesListClean;
+    }
+
+    // Shortcut methods
 
     public void goToLogin() {
         clickOnMyAccount();

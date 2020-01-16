@@ -18,6 +18,11 @@ public interface ConfigProperties extends Config {
 	String WRONG_USER_LOGIN();
 	String WRONG_USER_PASSWORD();
 
+	//Currencies
+	String CURRENCY_EURO();
+	String CURRENCY_GBP();
+	String CURRENCY_USD();
+
 	//Localized strings
 	String CART_PAGE_EMPTY_TITLE();
 	String CART_PAGE_GIFT_CERTIFICATE_TITLE();
