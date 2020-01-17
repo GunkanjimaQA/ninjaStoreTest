@@ -99,6 +99,8 @@ public class HeaderElement extends ParentPage {
         //executor.executeScript("arguments[0].click();", cartDropdownButton);
     }
 
+    public void scrollToHeader() { commonActions.scrollToTheElement(currencySelector);}
+
     public void removeProductFromCartDropdown() {
         cartDropdownRemoveButton.click();
     }
@@ -118,6 +120,19 @@ public class HeaderElement extends ParentPage {
             currenciesListClean.add(currency.replaceAll("[^a-zA-Z0-9\\\\]", ""));
         }
         return currenciesListClean;
+    }
+    public void selectNewCurrency(String newCurrency) {
+        switch (newCurrency) {
+            case "EUR":
+                commonActions.clickOnElement(currenciesButtons.get(0));
+                break;
+            case "GBP":
+                commonActions.clickOnElement(currenciesButtons.get(1));
+                break;
+            case "USD":
+                commonActions.clickOnElement(currenciesButtons.get(2));
+                break;
+        }
     }
 
     // Shortcut methods

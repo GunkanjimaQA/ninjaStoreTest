@@ -10,11 +10,11 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @RunWith(Parameterized.class)
-public class SignInParameterized extends ParentTest {
+public class LoginNegativeParameterizedTest extends ParentTest {
 
     String userLogin, userPassword;
 
-    public SignInParameterized(String userLogin, String userPassword) {
+    public LoginNegativeParameterizedTest(String userLogin, String userPassword) {
         this.userLogin = userLogin;
         this.userPassword = userPassword;
     }
@@ -33,6 +33,7 @@ public class SignInParameterized extends ParentTest {
     public void failedLoginTestWithParameters() {
         mainPage.openMainPage();
         Utils.waitABit(3000);
+
         headerElement.clickOnMyAccount();
         headerElement.clickOnLogin();
         Utils.waitABit(1000);

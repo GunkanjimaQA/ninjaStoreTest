@@ -55,6 +55,21 @@ public class CommonActions {
         }
     }
 
+    public void clickOnElementFromListWithText(List<WebElement> elements, String text) {
+        try {
+            for (WebElement element : elements) {
+                if (element.getText().contains(text)) {
+                    driverWait_10.until(ExpectedConditions.elementToBeClickable(element));
+                    element.click();
+                    log.info("Element was clicked.");
+                }
+                break;
+            }
+        } catch (Exception e) {
+            failTest();
+        }
+    }
+
     public void enterText(WebElement element, String text) {
         try {
             element.click();
@@ -92,6 +107,20 @@ public class CommonActions {
         return elements.stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
+    }
+
+    public String currencyDetector(String currencySymbol) {
+        switch (currencySymbol) {
+            case "££":
+                return "GBP";
+            case "€€":
+                return "EUR";
+            case "$$":
+                return "USD";
+            default:
+                log.error("Wrong currency symbol!");
+                return "none";
+        }
     }
 
     private void failTest() {

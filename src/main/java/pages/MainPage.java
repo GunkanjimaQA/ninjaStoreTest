@@ -1,7 +1,6 @@
 package pages;
 
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,6 +18,9 @@ public class MainPage extends ParentPage {
 
     @FindBy(xpath = ".//div[@class='button-group']")
     List<WebElement> addFeaturedToCartButtons;
+
+    @FindBy(xpath = ".//p[@class='price']")
+    List<WebElement> featuredProductsPrices;
 
     @FindBy(xpath = ".//div[@class='alert alert-success alert-dismissible']")
     WebElement successfulAddToCartAlert;
@@ -67,7 +69,29 @@ public class MainPage extends ParentPage {
         return commonActions.isElementDisplayed(featuredProducts.get(itemPosition));
     }
 
+    public String getCurrencyFromFeaturedProduct(int itemPosition) {
+        String symbol = featuredProductsPrices
+                .get(itemPosition)
+                .getText()
+                .replaceAll("[^£€$\\\\]", "");
+        return commonActions.currencyDetector(symbol);
+    }
+
     public boolean isSuccessfulProductAddAlertShown() {
         return commonActions.isElementDisplayed(successfulAddToCartAlert);
+    }
+
+    public String chooseNewCurrencyForTest(String currentCurrency) {
+        switch (currentCurrency) {
+            case "USD":
+                return "EUR";
+            case "EUR":
+                return "GBP";
+            case "GBP":
+                return "USD";
+            default:
+                log.error("Wrong currency acronym!");
+                return "none";
+        }
     }
 }

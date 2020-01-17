@@ -1,21 +1,23 @@
 package suites;
 
 import footertests.ContactUsTest;
+import menutests.CurrencyTest;
 import menutests.GeneralMenuTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import shoppingcarttests.AddFeaturedProduct;
-import signintests.SignInParameterized;
-import signintests.SignInTest;
+import signintests.LoginNegativeParameterizedTest;
+import signintests.LoginTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses(
         {
                 GeneralMenuTest.class,
-                SignInTest.class,
-                SignInParameterized.class,
+                LoginTest.class,
+                LoginNegativeParameterizedTest.class,
                 AddFeaturedProduct.class,
-                ContactUsTest.class
+                ContactUsTest.class,
+                CurrencyTest.class
         }
 )
 public class FullSuite {

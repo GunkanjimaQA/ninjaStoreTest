@@ -6,7 +6,9 @@ import org.aeonbits.owner.ConfigFactory;
 import org.junit.Test;
 import parenttest.ParentTest;
 
-public class SignInTest extends ParentTest {
+import java.util.Objects;
+
+public class LoginTest extends ParentTest {
 
     public ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
 
@@ -21,7 +23,9 @@ public class SignInTest extends ParentTest {
         loginPage.fillInUserLogin(configProperties.USER_LOGIN());
         loginPage.fillInUserPassword(configProperties.USER_PASSWORD());
         loginPage.clickLoginButton();
-        Utils.waitABit(6000);
+        checkExpectedResult("You didn't login!"
+                , Objects.equals(accountPage.getAccountPageTitleName(0).toLowerCase()
+                , configProperties.ACCOUNT_MY_TITLE().toLowerCase()));
     }
 
     @Test

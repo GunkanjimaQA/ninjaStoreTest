@@ -21,13 +21,16 @@ public class GeneralMenuTest extends ParentTest {
         Utils.waitABit(2000);
         headerElement.clickOnCurrencySelector();
         Utils.waitABit(2000);
-        headerElement.clickUpperMenuByPosition(0);
-        Utils.waitABit(2000);
-        headerElement.clickUpperMenuByPosition(1);
-        Utils.waitABit(2000);
-        headerElement.clickUpperMenuByPosition(2);
-        Utils.waitABit(2000);
-        headerElement.clickUpperMenuByPosition(3);
-        Utils.waitABit(2000);
+        checkExpectedResult("Currencies list is empty!", headerElement.getCurrenciesFromSelector().size() != 0);
+
+        //by position
+        //headerElement.clickUpperMenuByPosition(0);
+        //Utils.waitABit(2000);
+        //headerElement.clickUpperMenuByPosition(1);
+        //Utils.waitABit(2000);
+        //clickUpperMenuByPosition(2);
+        //Utils.waitABit(2000);
+        //headerElement.clickUpperMenuByPosition(3);
+        //Utils.waitABit(2000);
     }
 }
