@@ -17,6 +17,9 @@ public class CartPage extends ParentPage {
     @FindBy(xpath = ".//button[@data-original-title='Remove']")
     WebElement removeProductButton;
 
+    @FindBy(xpath = ".//form/div/table/tbody/tr[1]/td[6]")
+    WebElement priceTotal;
+
     public CartPage(WebDriver driver, String partialUrl) {
         super(driver, partialUrl);
     }
@@ -40,5 +43,9 @@ public class CartPage extends ParentPage {
 
     public void removeProductFromCart() {
         commonActions.clickOnElement(removeProductButton);
+    }
+
+    public String getPriceTotal() {
+        return priceTotal.getText().replaceAll("[^\\d+(\\.\\d+)]", "");
     }
 }

@@ -27,4 +27,5 @@ public interface ConfigProperties extends Config {
 	String CART_PAGE_EMPTY_TITLE();
 	String CART_PAGE_GIFT_CERTIFICATE_TITLE();
 	String ACCOUNT_MY_TITLE();
+	String SUCCESSFUL_CERT_MESSAGE_PART();
 }

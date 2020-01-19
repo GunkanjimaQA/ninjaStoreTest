@@ -24,6 +24,7 @@ public class ParentTest {
     protected FooterElement footerElement;
     protected ContactPage contactPage;
     protected AccountPage accountPage;
+    protected GiftCertificatePage giftCertificatePage;
 
     @Before
     public void setUp() throws Exception {
@@ -46,6 +47,7 @@ public class ParentTest {
         footerElement = new FooterElement(driver, "");
         contactPage = new ContactPage(driver, "");
         accountPage = new AccountPage(driver, "");
+        giftCertificatePage = new GiftCertificatePage(driver, "");
     }
 
     private WebDriver driverInit() throws Exception {

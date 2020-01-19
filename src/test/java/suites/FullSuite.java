@@ -1,11 +1,12 @@
 package suites;
 
 import footertests.ContactUsTest;
+import footertests.GiftCertificateTest;
 import menutests.CurrencyTest;
 import menutests.GeneralMenuTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import shoppingcarttests.AddFeaturedProduct;
+import shoppingcarttests.AddFeaturedProductTest;
 import signintests.LoginNegativeParameterizedTest;
 import signintests.LoginTest;
 
@@ -15,8 +16,9 @@ import signintests.LoginTest;
                 GeneralMenuTest.class,
                 LoginTest.class,
                 LoginNegativeParameterizedTest.class,
-                AddFeaturedProduct.class,
+                AddFeaturedProductTest.class,
                 ContactUsTest.class,
+                GiftCertificateTest.class,
                 CurrencyTest.class
         }
 )

@@ -8,7 +8,7 @@ import parenttest.ParentTest;
 
 import java.util.Objects;
 
-public class AddFeaturedProduct extends ParentTest {
+public class AddFeaturedProductTest extends ParentTest {
 
     private ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
 

@@ -62,8 +62,8 @@ public class CommonActions {
                     driverWait_10.until(ExpectedConditions.elementToBeClickable(element));
                     element.click();
                     log.info("Element was clicked.");
+                    break;
                 }
-                break;
             }
         } catch (Exception e) {
             failTest();
@@ -103,6 +103,36 @@ public class CommonActions {
         javascriptExecutor.executeScript("window.scrollTo(0, document.body.scrollHeight)");
     }
 
+        public void toggleCheckbox(WebElement checkboxLocator, String action) {
+        switch (action) {
+            case "check":
+                try {
+                    if (!checkboxLocator.isSelected()) {
+                        checkboxLocator.click();
+                    } else {
+                        log.info("Checkbox is already checked!");
+                    }
+                } catch (Exception e) {
+                    stopTestAndPrintMessage();
+                }
+                break;
+            case "uncheck":
+                try {
+                    if (checkboxLocator.isSelected()) {
+                        checkboxLocator.click();
+                    } else {
+                        log.info("Checkbox is already unchecked!");
+                    }
+                } catch (Exception e) {
+                    stopTestAndPrintMessage();
+                }
+                break;
+            default:
+                log.error("Wrong action parameter! Use <check> or <uncheck> only.");
+                break;
+        }
+}
+
     public List<String> getListOfTextsFromElements(List<WebElement> elements) {
         return elements.stream()
                 .map(WebElement::getText)
@@ -121,6 +151,11 @@ public class CommonActions {
                 log.error("Wrong currency symbol!");
                 return "none";
         }
+    }
+
+    private void stopTestAndPrintMessage() {
+        log.error("Can't work with element ");
+        Assert.fail("Can't work with element ");
     }
 
     private void failTest() {
